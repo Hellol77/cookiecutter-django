@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
-    GENDER_CHOICES = [gender
+    GENDER_CHOICES = [
         ('M','Male'),
         ('F','Female'),
         ('C', 'Custom'),
@@ -22,6 +22,8 @@ class User(AbstractUser):
     email = models.CharField(blank=True, max_length=255)
     phone_number = models.CharField(blank=True, max_length=255)
     gender = models.CharField(blank=True, choices=GENDER_CHOICES,max_length=255)
+    followers = models.ManyToManyField("self")
+    following = models.ManyToManyField("self")
     def get_absolute_url(self):
         """Get url for user's detail view.
 
