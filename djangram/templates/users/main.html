@@ -1,17 +1,24 @@
-{% extends 'users/base.html' %}
+{% extends "users/base.html" %}
+
 {% block title %}
 Log in
-{% endblock title %}
+{% endblock title%}
 
-Here is main.html
+Here is main.html.
 
 {% block content %}
-<form action = "{% url 'users:main' %}"	method='post'>
-	{% csrf_token %}
-	<input type="input" name="username" placeholder="username">
-	<input type="password"	name="password"	placeholder="password">
-	<input type="submit" value="Login">
-</form>
+<div class="auth">
+    <form action="{% url 'users:main' %}" method='post'>
+        {% csrf_token %}
+        <input type="input" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="Login">
+    </form>
+</div>
 
-<a href="{% url 'users:signup' %}">sign up</a>
+<div class="auth_link">
+    <a href="{% url 'users:signup' %}">Sign up</a>
+</div>
+
+
 {% endblock content %}

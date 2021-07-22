@@ -6,11 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/users/main.css' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 	<title>{% block title %}{% endblock %}Djangram</title>
+	<style>
+	*{	
+		font-family: 'Nanum Gothic', sans-serif;
+	}</style>
 </head>
 <body>
-	Here is base.html
-	<div>
+	<div class="content">
 		{% block content %} {% endblock %}
 	</div>
 	{% include "users/footer.html" %}
