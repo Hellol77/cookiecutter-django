@@ -19,6 +19,9 @@ class Post(timeStampedModel):#사진
 	caption = models.TextField(blank=False)
 	image_likes = models.ManyToManyField(user_model.User,blank=True, related_name='post_image_likes')
 	
+	def __str__(self):
+		return f"{self.author}: {self.caption}"
+	
 class Comment(timeStampedModel):
 	author = models.ForeignKey(
 				user_model.User,
@@ -33,3 +36,6 @@ class Comment(timeStampedModel):
 				related_name='comment_post'
 			)
 	contents = models.TextField(blank=True)
+	
+	def __str__(self):
+		return f"{self.author}: {self.contents}"
