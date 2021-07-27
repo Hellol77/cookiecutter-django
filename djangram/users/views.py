@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from .forms import SignUpForm
 
+
+	
 def main(request):
     if request.method =='GET':
         return render(request, 'users/main.html')
@@ -29,7 +31,6 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             

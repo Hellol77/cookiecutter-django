@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404, render
 from djangram.users.models import User as user_model
 from . import models
 from django.db.models import Q
-
 from .forms import CreatePostForm
+
 # Create your views here.
 def index(request):
 	if request.method == "GET":
@@ -47,7 +47,13 @@ def post_create(request):
 				post.save()
 			else:
 				print(form.errors)
-			
-			return render(request,'posts/main.html')
+			user = get_object_or_404(user_model,pk=request.user.id)
+			following = user.following.all()
+			posts = models.Post.objects.filter(
+				Q(author__in=following) | Q(author=user)
+			)
+						
+			serializer = serializers.PostSerializer(posts,many=True)
+			return render(request,'posts/main.html',{"posts": serializer.data})
 		else:
 			return render(request,'users/main.html')
