@@ -2,7 +2,7 @@ from djangram.users.forms import SignUpForm
 from django.contrib.auth import authenticate
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import SignUpForm
 
@@ -40,4 +40,9 @@ def signup(request):
                 login(request,user)
                 return HttpResponseRedirect(reverse('posts:index'))
         
+        return render(request, 'users/main.html')
+        
+def logout(request):
+    if request.method =='POST':
+        logout(request)
         return render(request, 'users/main.html')

@@ -4,7 +4,9 @@ from djangram.users.models import User as user_model
 from . import models
 from django.db.models import Q
 from .forms import CreatePostForm
-
+from django.contrib.auth import logout
+from django.http.response import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 def index(request):
 	if request.method == "GET":
@@ -52,8 +54,10 @@ def post_create(request):
 			posts = models.Post.objects.filter(
 				Q(author__in=following) | Q(author=user)
 			)
-						
+					
 			serializer = serializers.PostSerializer(posts,many=True)
 			return render(request,'posts/main.html',{"posts": serializer.data})
 		else:
 			return render(request,'users/main.html')
+			
+
